@@ -1,0 +1,42 @@
+<h1>Ordens</h1>
+<div class="jumbotron" ng-controller="MainCtrl">
+  <div ng-repeat="item in items">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th># da Ordem</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{item.ordem_id}}</th>
+          <td>{{item.status}}</td>
+          <td>
+            <a class="btn-sm btn-danger" ng-href="#/orders/cancel" ng-show="{{item.status_id != 3 && item.status_id != 1}}" ng-click="cancel(item.ordem_id)">Cancelar</a>
+            <a class="btn-sm btn-success" ng-href="#/orders/approve" ng-show="{{item.status_id == 0}}" ng-click="approve(item.ordem_id)">Aprovar</a>
+            <a class="btn-sm btn-primary" ng-href="#/orders/finish" ng-show="{{item.status_id == 2}}" ng-click="finish(item.ordem_id)">Finalizar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-left: -85%;">Produtos</p>
+    <table class="table table-bordered table-condensed" style="background-color: #fff; ">
+      <thead>
+        <tr>
+          <th>Identificador</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="produto in item.itens">
+          <th scope="row">{{produto.produto_id}}</th>
+          <td>{{produto.quantidade}}</td>
+          <td>{{produto.valor}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
